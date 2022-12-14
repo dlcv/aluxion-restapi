@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { FilesModule } from './files/files.module';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -13,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
     username: 'root',
     password: '',
     database: 'aluxion_api',
-    entities: [__dirname + '/**/*.entity{.ts, .js}'],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true
   }), UsersModule, FilesModule],
   controllers: [AppController],
