@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { FilesModule } from './files/files.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     database: 'aluxion_api',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true
-  }), UsersModule, FilesModule],
+  }), UsersModule, FilesModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

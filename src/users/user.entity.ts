@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { File } from '../files/file.entity'
 
 @Entity({
   name: 'users'
@@ -37,4 +38,8 @@ export class User {
     type: 'datetime'
   })
   updatedAt: Date
+
+  @OneToMany(() => File, file => file.user)
+  files: File[]
+
 }
