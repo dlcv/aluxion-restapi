@@ -44,10 +44,10 @@ export class AuthService {
   }
 
   async resetPassword(resetPasswordDto: ResetPasswordDto) {
-    const user = await this.usersService.getOneUserByResetPasswordToken(resetPasswordDto.resetPasswordToken)
-    if (user) {
-      user.password = await bcrypt.hash(resetPasswordDto.password, saltOrRounds);
-      return this.usersRepository.save(user)
-    }
+    const { resetPasswordToken, password } = resetPasswordDto;
+    const user = await this.usersService.getOneUserByResetPasswordToken(resetPasswordToken)
+    user.password = await bcrypt.hash(password, saltOrRounds);
+    user.resetPasswordToken = null
+    return this.usersRepository.save(user)
   }
 }
