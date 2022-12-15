@@ -5,13 +5,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
-@Controller('users')
+@Controller('api/v1/users')
 export class UsersController {
 
   constructor(private usersService: UsersService) {}
   
   @Post()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   createUser(@Body() newUser: CreateUserDto) {
     return this.usersService.createUser(newUser)
   }
