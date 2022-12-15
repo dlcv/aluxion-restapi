@@ -10,12 +10,14 @@ export class User {
   id: number
 
   @Column({
-    length: 150
+    length: 150,
+    name: 'first_name',
   })
   firstName: string
 
   @Column({
-    length: 150
+    length: 150,
+    name: 'last_name',
   })
   lastName: string
 
@@ -30,12 +32,14 @@ export class User {
 
   @Column({
     type: 'datetime',
+    name: 'created_at',
     default: () => 'CURRENT_TIMESTAMP'
   })
   createdAt: Date
 
   @Column({
-    type: 'datetime'
+    type: 'datetime',
+    name: 'updated_at',
   })
   updatedAt: Date
 

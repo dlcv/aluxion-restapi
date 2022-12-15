@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm'
+import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm'
 import { User } from '../users/user.entity';
 
 @Entity({
@@ -41,10 +41,9 @@ export class File {
   createdAt: Date
 
   @ManyToOne(() => User, user => user.files)
+  @JoinColumn({
+    name: "user_id"
+  })
   user: User
 
-  @Column({
-    name: 'user_id'
-  })
-  userId: number
 }
