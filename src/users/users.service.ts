@@ -5,6 +5,10 @@ import { Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+import * as bcrypt from 'bcrypt';
+
+const saltOrRounds = 10;
+
 @Injectable()
 export class UsersService {
 
@@ -20,6 +24,7 @@ export class UsersService {
     }
     
     const newUser = this.userRepository.create(user)
+    newUser.password = await bcrypt.hash(newUser.password, saltOrRounds);
     return this.userRepository.save(newUser)
   }
 
