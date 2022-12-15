@@ -4,7 +4,6 @@ import { User } from './user.entity';
 import { Repository } from 'typeorm'
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
 import * as bcrypt from 'bcrypt';
 
 const saltOrRounds = 10;
@@ -45,6 +44,16 @@ export class UsersService {
   async getOneUserByEmail(email: string): Promise<User> {
     const userFound = await this.userRepository.findOne({
       where: { email }
+    })
+    if (!userFound) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND)
+    }
+    return userFound
+  }
+
+  async getOneUserByResetPasswordToken(resetPasswordToken: string): Promise<User> {
+    const userFound = await this.userRepository.findOne({
+      where: { resetPasswordToken }
     })
     if (!userFound) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND)

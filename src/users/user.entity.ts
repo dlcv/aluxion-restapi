@@ -46,4 +46,12 @@ export class User {
   @OneToMany(() => File, file => file.user)
   files: File[]
 
+  @Column({
+    type: 'uuid',
+    unique: true,
+    nullable: true,
+    name: 'reset_password_token'
+  })
+  resetPasswordToken: string
+
 }
